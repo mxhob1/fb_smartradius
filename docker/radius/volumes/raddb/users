@@ -68,6 +68,8 @@
 #		Reply-Message = "Your account has been disabled."
 #
 
+testing  Cleatext-Password := "password"
+
 #
 # This is a complete entry for "steve". Note that there is no Fall-Through
 # entry so that no DEFAULT entry will be used, and the user will NOT
