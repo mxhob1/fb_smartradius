@@ -11,6 +11,7 @@ def chkmarapara(devIP, uName, passWord):
     usergroupstatus = chkUserGroup(uName)
     cpustatus = chkDeviceCPU(devIP, "networktocode", 20)
     userpass = chkUserPass(uName, passWord)
+    print(userpass)
     if usergroupstatus == "OK" and cpustatus == "OK" and userpass == "OK":
         return "OK:Arista-AVPair = 'shell:roles=network-admin', Service-Type = NAS-Prompt-User"
     else:
@@ -21,10 +22,13 @@ def chkUserPass(uName, passWord):
     for i in f:
         sp = i.split(":")
         if uName == sp[0]:
-            # print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
-            # print(sp[2])
-            hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2]
-            return "OK"
+            print(passWord)
+            print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
+            print(sp[2].rstrip('\r\n'))
+            if hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2].rstrip('\r\n'):
+                return "OK"
+            else:
+                return "ERR"
         else:
             return "ERR"
 
