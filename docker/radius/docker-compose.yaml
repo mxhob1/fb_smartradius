@@ -1,14 +1,13 @@
 version: '2'
 services:
  freeradius:
-  image: "gaoyifan/freeradius"
-# build: "docker-alpine-radius/"
+  image: "fgiana/freeradius3"
   ports:
    - "1812:1812/udp"
    - "1813:1813/udp"
   volumes:
-   - "./volumes/raddb/:/etc/raddb/"
- freeradius-test:
+   - "./volumes/raddb/:/opt/freeradius/etc/raddb/"
+ auth-test:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
   command: "radtest testing password 127.0.0.1 0 netenghack"
