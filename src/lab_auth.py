@@ -62,6 +62,7 @@ def chkDeviceCPU(devIP, community, threShold):
     res = (errorIndication, errorStatus, errorIndex, varBinds) = rf(comm_data, transport, oid)
     if not errorIndication is None  or errorStatus is True:
     #    print("Error: %s %s %s %s" % res)
+        return 'ERR'
     else:
         # print("%s" % type(varBinds))
         for i in varBinds:
