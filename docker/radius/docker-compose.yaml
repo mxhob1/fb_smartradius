@@ -8,8 +8,7 @@ services:
    - "1813:1813"
    - "18120:18120"
   volumes:
-   - "./volumes/clients.conf:/etc/raddb/clients.conf"
-   - "./volumes/users:/etc/raddb/users"
+   - "./volumes/raddb/:/etc/raddb/"
  freeradius-test:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
