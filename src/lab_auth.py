@@ -17,7 +17,7 @@ def chkmarapara(devIP, uName, passWord):
     print(cpustatus)
     # print(userpass)
     if usergroupstatus == "OK" and cpustatus == "OK" and userpass == "OK":
-        return "OK:Arista-AVPair = 'shell:roles=network-admin', Service-Type = NAS-Prompt-User"
+        return "OK:Arista-AVPair=shell:roles=network-admin,Service-Type=NAS-Prompt-User"
     else:
         return "ERR"
 
@@ -69,7 +69,7 @@ def chkDeviceCPU(devIP, community, uName):
                     isallowed = "NO"
         elif "lt" in sp[1]:
             if checkpoint == 0:
-                # print("I am here..")
+                print("I am here..")
                 if cpuUsage < int(sp[1].replace("lt", "")):
                     if userGroup in sp[3]:
                         isallowed = "YES"
