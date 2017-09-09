@@ -1,39 +1,16 @@
 version: '2'
 services:
-  db:
-    image: mysql
-    ports:
-      - "3306:3306"
-    volumes: 
-      - ~/Docker/mysql/volumes/mysql:/var/lib/mysql
-      - ~/Docker/mysql/volumes/radius.sql:/docker-entrypoint-initdb.d/radius.sql
-      - ~/Docker/mysql/volumes/conf.d/:/etc/mysql/conf.d/
-    environment:
-       MYSQL_ROOT_PASSWORD: netengcode
-       MYSQL_USER: radius
-       MYSQL_PASSWORD: radpass
-       MYSQL_DATABASE: radius
-    restart: always
-  redis:
-    image: redis
-    restart: always
-  freeradius:
-    image: "stejon/freeradius"  
-    environment:
-      DB_HOST: localhost
-      DB_PORT: 3306
-      DB_USER: radius
-      DB_PASS: radpass
-      DB_NAME: radius
-      RADIUS_KEY: netengcode
-      REDIS_HOST: localhost
-      REDIS_PORT: 6379
-    ports:
-      - "1812:1812/udp"
-      - "1813:1813/udp"
-    depends_on:
-      - db
-      - redis
-  auth-test:
-    image: "marcelmaatkamp/freeradius"
-    command: "radtest testing password 127.0.0.1 0 netengcode"
+ freeradius:
+  image: "marcelmaatkamp/freeradius"
+# build: "docker-alpine-radius/"
+  ports:
+   - "1812:1812"
+   - "1813:1813"
+   - "18120:18120"
+  volumes:
+   - "./volumes/clients.conf:/etc/raddb/clients.conf"
+   - "./volumes/users:/etc/raddb/users"
+ freeradius-test:
+  image: "marcelmaatkamp/freeradius"
+# build: "docker-alpine-radius/"
+  command: "radtest testing password freeradius 0 netenghack"
