@@ -13,9 +13,9 @@ def chkmarapara(devIP, uName, passWord):
     usergroupstatus = chkUserGroup(uName)
     cpustatus = chkDeviceCPU(devIP, "networktocode", uName)
     userpass = chkUserPass(uName, passWord)
-    print(usergroupstatus)
+    # print(usergroupstatus)
     print(cpustatus)
-    print(userpass)
+    # print(userpass)
     if usergroupstatus == "OK" and cpustatus == "OK" and userpass == "OK":
         return "OK:Arista-AVPair = 'shell:roles=network-admin', Service-Type = NAS-Prompt-User"
     else:
@@ -41,7 +41,7 @@ def getDeviceCPU(devIP, community):
     rf = getattr(generator, 'nextCmd')
     res = (errorIndication, errorStatus, errorIndex, varBinds) = rf(comm_data, transport, oid)
     if not errorIndication is None  or errorStatus is True:
-        print("Error: %s %s %s %s" % res)
+        # print("Error: %s %s %s %s" % res)
         return 100
     else:
         # print("%s" % type(varBinds))
@@ -91,8 +91,8 @@ def chkUserPass(uName, passWord):
         sp = i.split(":")
         if uName == sp[0]:
             if checkpoint == 0:
-                print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
-                print(sp[2].rstrip('\r\n'))
+                # print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
+                # print(sp[2].rstrip('\r\n'))
                 if hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2].rstrip('\r\n'):
                     userpassed = "OK"
                     checkpoint = 1
@@ -101,7 +101,7 @@ def chkUserPass(uName, passWord):
         else:
             if checkpoint == 0:
                 userpassed = "ERR"
-    print("yeah", userpassed)
+    # print("yeah", userpassed)
     return userpassed
 
 def chkUserGroup(uName):
@@ -110,7 +110,7 @@ def chkUserGroup(uName):
     if whatsUpGroup == 'admin':
         status = 'OK'
     elif whatsUpGroup == 'ronly':
-        status = 'ERR'
+        status = 'OK'
     elif whatsUpGroup == 'rwonly':
         status = 'ERR'
     else :
