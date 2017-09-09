@@ -1,7 +1,6 @@
 version: '2'
 services:
   db:
-    container_name: freeradius_db
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: netenghack

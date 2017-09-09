@@ -1,16 +1,21 @@
 version: '2'
 services:
   freeradius:
-    image: "marcelmaatkamp/freeradius"  
-  # build: "docker-alpine-radius/"
+    image: “tpdock/freeradius"  
+    environment:
+      RADIUS_LISTEN_IP: *
+      RADIUS_CLIENTS: secret@127.0.0.1
+      RADIUS_SQL: true
+      RADIUS_DB_NAME: mysql
+      RADIUS_DB_NAME: freeradius
+      RADIUS_DB_USERNAME: freeradius
+      RADIUS_DB_PASSWORD: freeradius
     ports:
       - "1812:1812/udp"
       - "1813:1813"
       - "18120:18120"
-    volumes:
-      - "./volumes/clients.conf:/etc/raddb/clients.conf"
-      - "./volumes/users:/etc/raddb/users"
+  # volumes:
+    # - “./volumes/raddb:/etc/raddb”
   freeradius-test:
     image: "marcelmaatkamp/freeradius"
-  # build: "docker-alpine-radius/"
     command: "radtest testing password freeradius 0 SECRET"
