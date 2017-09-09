@@ -1,18 +1,32 @@
 from datetime import datetime, date
-import paramiko
 from pysnmp.entity.rfc3413.oneliner import cmdgen
 from pysnmp.proto.rfc1902 import Integer, IpAddress, OctetString
 
+import hashlib
+import paramiko
+import sys
 
-def chkmarapara(devIP, uName, passWord, community, threshold):
+
+def chkmarapara(devIP, uName, passWord):
     usergroupstatus = chkUserGroup(uName)
-    cpustatus = chkDeviceCPU(devIP, community, threshold)
-
-    if usergroupstatus == "OK" and cpustatus == "OK":
+    cpustatus = chkDeviceCPU(devIP, "networktocode", 20)
+    userpass = chkUserPass(uName, passWord)
+    if usergroupstatus == "OK" and cpustatus == "OK" and userpass == "OK":
         return "OK:Arista-AVPair = 'shell:roles=network-admin', Service-Type = NAS-Prompt-User"
     else:
         return "ERR"
 
+def chkUserPass(uName, passWord):
+    f = open('../dbs/ugroup', 'r')
+    for i in f:
+        sp = i.split(":")
+        if uName == sp[0]:
+            # print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
+            # print(sp[2])
+            hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2]
+            return "OK"
+        else:
+            return "ERR"
 
 def chkUserGroup(uName):
     whatsUpGroup = "nomatch"
@@ -54,3 +68,7 @@ def chkDeviceCPU(devIP, community, threShold):
         return "OK"
     else:
         return "ERR "
+
+if __name__=="__main__":
+    # print(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    print(chkmarapara(sys.argv[1], sys.argv[2], str(sys.argv[3])))
