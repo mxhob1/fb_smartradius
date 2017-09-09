@@ -13,9 +13,9 @@ def chkmarapara(devIP, uName, passWord):
     usergroupstatus = chkUserGroup(uName)
     cpustatus = chkDeviceCPU(devIP, "networktocode", uName)
     userpass = chkUserPass(uName, passWord)
-    # print(usergroupstatus)
-    # print(cpustatus)
-    # print(userpass)
+    print(usergroupstatus)
+    print(cpustatus)
+    print(userpass)
     if usergroupstatus == "OK" and cpustatus == "OK" and userpass == "OK":
         return "OK:Arista-AVPair = 'shell:roles=network-admin', Service-Type = NAS-Prompt-User"
     else:
