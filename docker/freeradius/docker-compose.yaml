@@ -1,7 +1,7 @@
 version: '2'
 services:
   freeradius:
-    image: “tpdock/freeradius"  
+    image: "tpdock/freeradius"  
     environment:
       RADIUS_LISTEN_IP: *
       RADIUS_CLIENTS: secret@127.0.0.1
@@ -15,7 +15,7 @@ services:
       - "1813:1813"
       - "18120:18120"
   # volumes:
-    # - “./volumes/raddb:/etc/raddb”
+    # - "./volumes/raddb:/etc/raddb"
   freeradius-test:
     image: "marcelmaatkamp/freeradius"
     command: "radtest testing password freeradius 0 SECRET"
