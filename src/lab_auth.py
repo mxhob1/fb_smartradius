@@ -5,7 +5,9 @@ from pysnmp.proto.rfc1902 import Integer, IpAddress, OctetString
 
 import hashlib
 import sys
+import os
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def chkmarapara(devIP, uName, passWord):
     usergroupstatus = chkUserGroup(uName)
@@ -18,7 +20,7 @@ def chkmarapara(devIP, uName, passWord):
         return "ERR"
 
 def chkUserPass(uName, passWord):
-    f = open('../dbs/ugroup', 'r')
+    f = open(os.path.join(BASE_DIR,'dbs/ugroup'), 'r')
     for i in f:
         sp = i.split(":")
         if uName == sp[0]:
@@ -34,7 +36,8 @@ def chkUserPass(uName, passWord):
 
 def chkUserGroup(uName):
     whatsUpGroup = "nomatch"
-    f = open ("../dbs/ugroup", "r")
+    f = open(os.path.join(BASE_DIR,'dbs/ugroup'), 'r')
+    # f = open (os.path.join()"/dbs/ugroup", "r")
     for i in f:
         sp = i.split(":")
         if uName == sp[0]:
