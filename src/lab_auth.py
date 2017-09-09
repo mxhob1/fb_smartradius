@@ -70,10 +70,8 @@ def chkDeviceCPU(devIP, community, threShold):
         print("%s" % type(varBinds))
         for i in varBinds:
             # print(i)
-            print(i[0])
             cpuUsage = i[0][1].split("(")[1].replace(")","")
                 # cpuUsage = j).split(" ")[2]
-                break
     if int(cpuUsage) <= threShold:
         return "OK"
     else:
