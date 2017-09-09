@@ -1,9 +1,13 @@
 version: '2'
 services:
   db:
+    container_name: freeradius_db
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: netenghack
+      MYSQL_DATABASE: freeradius
+      MYSQL_USER: freeradius
+      MYSQL_PASSWORD: freeradius
     volumes:
        - "./volumes/mysql:/var/lib/mysql"
   adminer:
