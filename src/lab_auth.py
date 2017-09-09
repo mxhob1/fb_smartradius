@@ -1,9 +1,9 @@
+#!/usr/bin/python3
 from datetime import datetime, date
 from pysnmp.entity.rfc3413.oneliner import cmdgen
 from pysnmp.proto.rfc1902 import Integer, IpAddress, OctetString
 
 import hashlib
-import paramiko
 import sys
 
 
