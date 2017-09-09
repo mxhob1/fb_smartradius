@@ -8,7 +8,6 @@ services:
    - "0.0.0.0:1813:1813"
   volumes:
    - "./volumes/raddb/:/etc/raddb/"
-  network_mode: host
  freeradius-test:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
