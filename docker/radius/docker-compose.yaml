@@ -1,7 +1,7 @@
 version: '2'
 services:
  freeradius:
-  image: "marcelmaatkamp/freeradius"
+  image: "gaoyifan/freeradius"
 # build: "docker-alpine-radius/"
   ports:
    - "1812:1812/udp"
