@@ -1,2 +1,2 @@
-cpu_threshold:gt19:login:admin
-cpu_threshold:lt20:login:admin,rwonly,ronly
+cpu_threshold:gt21:login:admin
+cpu_threshold:lt22:login:admin,rwonly,ronly
