@@ -4,8 +4,13 @@ services:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: netenghack
+      MYSQL_DATABASE: freeradius
+      MYSQL_USER: freeradius
+      MYSQL_PASSWORD: freeradius
     volumes:
-       - "./volumes/mysql:/var/lib/mysql"
+       - "~/Docker/mysql/volumes/mysql:/var/lib/mysql"
+    ports:
+       - 3306:3306
   adminer:
     image: adminer
     ports:
