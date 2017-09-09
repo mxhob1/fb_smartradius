@@ -4,10 +4,8 @@ services:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
   ports:
-   - "1812:1812"
-   - "1813:1813"
-   - "18120:18120"
-   - "10337:10337"
+   - "1812"
+   - "1813"
   volumes:
    - "./volumes/raddb/:/etc/raddb/"
   network_mode: host
