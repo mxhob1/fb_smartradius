@@ -22,9 +22,9 @@ def chkUserPass(uName, passWord):
     for i in f:
         sp = i.split(":")
         if uName == sp[0]:
-            print(passWord)
-            print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
-            print(sp[2].rstrip('\r\n'))
+            # print(passWord)
+            # print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
+            # print(sp[2].rstrip('\r\n'))
             if hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2].rstrip('\r\n'):
                 return "OK"
             else:
@@ -61,7 +61,7 @@ def chkDeviceCPU(devIP, community, threShold):
     rf = getattr(generator, 'nextCmd')
     res = (errorIndication, errorStatus, errorIndex, varBinds) = rf(comm_data, transport, oid)
     if not errorIndication is None  or errorStatus is True:
-       print("Error: %s %s %s %s" % res)
+    #    print("Error: %s %s %s %s" % res)
     else:
         # print("%s" % type(varBinds))
         for i in varBinds:
