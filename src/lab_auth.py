@@ -85,18 +85,24 @@ def chkDeviceCPU(devIP, community, uName):
 
 def chkUserPass(uName, passWord):
     f = open(os.path.join(BASE_DIR,'dbs/ugroup'), 'r')
+    userpassed = "ERR"
+    checkpoint = 0
     for i in f:
         sp = i.split(":")
         if uName == sp[0]:
-            # print(passWord)
-            # print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
-            # print(sp[2].rstrip('\r\n'))
-            if hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2].rstrip('\r\n'):
-                return "OK"
-            else:
-                return "ERR"
+            if checkpoint == 0:
+                print(hashlib.md5(passWord.encode('utf-8')).hexdigest())
+                print(sp[2].rstrip('\r\n'))
+                if hashlib.md5(passWord.encode('utf-8')).hexdigest() == sp[2].rstrip('\r\n'):
+                    userpassed = "OK"
+                    checkpoint = 1
+                else:
+                    userpassed = "ERR"
         else:
-            return "ERR"
+            if checkpoint == 0:
+                userpassed = "ERR"
+    print("yeah", userpassed)
+    return userpassed
 
 def chkUserGroup(uName):
     whatsUpGroup = "nomatch"
