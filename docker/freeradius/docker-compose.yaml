@@ -3,7 +3,7 @@ services:
   freeradius:
     image: "tpdock/freeradius"  
     environment:
-      RADIUS_LISTEN_IP: *
+      RADIUS_LISTEN_IP: 0.0.0.0
       RADIUS_CLIENTS: secret@127.0.0.1
       RADIUS_SQL: true
       RADIUS_DB_NAME: mysql
