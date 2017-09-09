@@ -4,7 +4,7 @@ services:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
   ports:
-   - "1812:1812/udp"
+   - "1812:1812"
    - "1813:1813"
    - "18120:18120"
   volumes:
