@@ -12,4 +12,6 @@ services:
  freeradius-test:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
-  command: "radtest testing password freeradius 0 netenghack"
+  command: "radtest testing password 127.0.0.1 0 netenghack"
+  command: "radtest testing password 10.0.0.9 0 netenghack"
+  command: "radtest testing password 54.79.18.238 0 netenghack"
