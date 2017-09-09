@@ -1,20 +1,18 @@
 version: '2'
 services:
-  freeradius:
-    image: vimagick/freeradius
-    ports:
-      - "1812:1812/udp"
-      - "1813:1813/udp"
-    links:
-      - mysql
-    restart: always
-  mysql:
-    image: mysql
-    volumes:
-      - ./mysql:/docker-entrypoint-initdb.d
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    restart: always
-  freeradius-test:
-    image: "marcelmaatkamp/freeradius"
-    command: "radtest testing password 10.0.0.9 0 netenghack"
+ freeradius:
+  image: "marcelmaatkamp/freeradius"
+# build: "docker-alpine-radius/"
+  ports:
+   - "1812:1812"
+   - "1813:1813"
+   - "18120:18120"
+  volumes:
+   - "./volumes/raddb/:/etc/raddb/"
+  network_mode: host
+ freeradius-test:
+  image: "marcelmaatkamp/freeradius"
+# build: "docker-alpine-radius/"
+  command: "radtest testing password 127.0.0.1 0 netenghack"
+  command: "radtest testing password 10.0.0.9 0 netenghack"
+  command: "radtest testing password 54.79.18.238 0 netenghack"
