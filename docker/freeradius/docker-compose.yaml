@@ -6,7 +6,7 @@ services:
       RADIUS_LISTEN_IP: 0.0.0.0
       RADIUS_CLIENTS: netengcode@127.0.0.1
       RADIUS_SQL: "true"
-      RADIUS_DB_NAME: mysql
+      RADIUS_DB_HOST: 127.0.0.1
       RADIUS_DB_NAME: freeradius
       RADIUS_DB_USERNAME: freeradius
       RADIUS_DB_PASSWORD: freeradius
@@ -14,8 +14,8 @@ services:
       - "1812:1812/udp"
       - "1813:1813"
       - "18120:18120"
-  # volumes:
-    # - "./volumes/raddb:/etc/raddb"
-  freeradius-test:
+    volumes:
+      - "./volumes/raddb:/etc/raddb"
+  auth-test:
     image: "marcelmaatkamp/freeradius"
-    command: "radtest testing password freeradius 0 netengcode"
+    command: "radtest testing password 127.0.0.1 0 netengcode"
