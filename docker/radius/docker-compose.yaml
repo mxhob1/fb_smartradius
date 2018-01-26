@@ -7,6 +7,7 @@ services:
    - "1813:1813/udp"
   volumes:
    - "./volumes/raddb/:/opt/freeradius/etc/raddb/"
+   - "./volumes/freeradius/rlm_perl.so:/usr/lib/freeradius/rlm_perl.so"
  auth-test:
   image: "marcelmaatkamp/freeradius"
 # build: "docker-alpine-radius/"
